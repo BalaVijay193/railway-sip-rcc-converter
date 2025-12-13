@@ -1,14 +1,13 @@
 package com.railway.sip.model;
 
+import com.railway.sip.graph.YardNode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
 
-/**
- * Represents a railway route from entry signal to exit signal
- */
 @Data
 @Builder
 @NoArgsConstructor
@@ -18,28 +17,21 @@ public class Route {
     private String routeName;
     private String entrySignalId;
     private String exitSignalId;
-    private RouteType type;
-    private com.railway.sip.graph.YardNode.Direction direction;
-    
+    private YardNode.Direction direction;
     private List<String> controlTrackIds;
+    private Map<String, String> pointPositions;
     private List<String> overlapTrackIds;
     private List<String> isolationPointIds;
-    
-    private Map<String, String> pointPositions;
-    private Map<String, String> overlapPointPositions;
     private Map<String, String> isolationPointPositions;
-    
     private List<String> crankHandleIds;
     private List<String> levelCrossingIds;
-    
-    private Set<String> conflictingRouteIds = new HashSet<>();
-    
-    private String approachLockedTrack;
-    private List<String> backLockedTracks;
-    
-    private long createdAt = System.currentTimeMillis();
-    
+    private RouteType type;
+    private String status;
+
     public enum RouteType {
-        MAINLINE, SHUNT, CALLING_ON, INDEPENDENT_SHUNT, DEPENDENT_SHUNT
+        MAINLINE,
+        CALLING_ON,
+        SHUNT,
+        SIDING
     }
 }
