@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://railway.sip/rcc" 
+           xmlns:rcc="http://railway.sip/rcc"
+           elementFormDefault="qualified">
+    
+    <!-- Root element -->
+    <xs:element name="RouteControlChart" type="rcc:RccType"/>
+    
+    <!-- Route Control Chart Type -->
+    <xs:complexType name="RccType">
+        <xs:sequence>
+            <xs:element name="RccId" type="xs:string"/>
+            <xs:element name="YardId" type="xs:string"/>
+            <xs:element name="YardName" type="xs:string"/>
+            <xs:element name="GeneratedBy" type="xs:string"/>
+            <xs:element name="GeneratedAt" type="xs:dateTime"/>
+            <xs:element name="TotalRoutes" type="xs:int"/>
+            <xs:element name="Entries">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="RouteEntry" type="rcc:RouteEntryType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Route Entry Type -->
+    <xs:complexType name="RouteEntryType">
+        <xs:sequence>
+            <xs:element name="SequenceNumber" type="xs:int"/>
+            <xs:element name="RouteName" type="xs:string"/>
+            <xs:element name="EntrySignal" type="xs:string"/>
+            <xs:element name="ExitSignal" type="xs:string"/>
+            <xs:element name="RouteButton" type="xs:string" minOccurs="0"/>
+            <xs:element name="RouteType" type="rcc:RouteTypeEnum"/>
+            <xs:element name="ControlTracks" type="rcc:StringListType"/>
+            <xs:element name="PointPositions" type="rcc:PointPositionType" minOccurs="0"/>
+            <xs:element name="OverlapTracks" type="rcc:StringListType" minOccurs="0"/>
+            <xs:element name="OverlapPointPositions" type="rcc:PointPositionType" minOccurs="0"/>
+            <xs:element name="IsolationPoints" type="rcc:StringListType" minOccurs="0"/>
+            <xs:element name="CrankHandles" type="rcc:StringListType" minOccurs="0"/>
+            <xs:element name="LevelCrossings" type="rcc:StringListType" minOccurs="0"/>
+            <xs:element name="ApproachLocked" type="xs:string" minOccurs="0"/>
+            <xs:element name="BackLocked" type="rcc:StringListType" minOccurs="0"/>
+            <xs:element name="ConflictingRoutes" type="rcc:StringListType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Route Type Enum -->
+    <xs:simpleType name="RouteTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="MAINLINE"/>
+            <xs:enumeration value="SHUNT"/>
+            <xs:enumeration value="CALLING_ON"/>
+            <xs:enumeration value="INDEPENDENT_SHUNT"/>
+            <xs:enumeration value="DEPENDENT_SHUNT"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Point Position Type -->
+    <xs:complexType name="PointPositionType">
+        <xs:sequence>
+            <xs:element name="Point" type="rcc:PointType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="PointType">
+        <xs:sequence>
+            <xs:element name="PointId" type="xs:string"/>
+            <xs:element name="Position" type="rcc:PositionEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Position Enum -->
+    <xs:simpleType name="PositionEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="NORMAL"/>
+            <xs:enumeration value="REVERSE"/>
+            <xs:enumeration value="UNKNOWN"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- String List Type -->
+    <xs:complexType name="StringListType">
+        <xs:sequence>
+            <xs:element name="Item" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

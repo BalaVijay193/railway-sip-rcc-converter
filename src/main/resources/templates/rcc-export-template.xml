@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RouteControlChart xmlns="http://railway.sip/rcc"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://railway.sip/rcc rcc.xsd">
+    
+    <!-- Metadata -->
+    <RccId>${rccId}</RccId>
+    <YardId>${yardId}</YardId>
+    <YardName>${yardName}</YardName>
+    <GeneratedBy>Railway SIP-RCC Converter v1.0</GeneratedBy>
+    <GeneratedAt>${generatedAt}</GeneratedAt>
+    <TotalRoutes>${totalRoutes}</TotalRoutes>
+    
+    <!-- Route Entries -->
+    <Entries>
+        <#list entries as entry>
+        <RouteEntry>
+            <SequenceNumber>${entry.sequenceNumber}</SequenceNumber>
+            <RouteName>${entry.routeName}</RouteName>
+            <EntrySignal>${entry.entrySignal}</EntrySignal>
+            <ExitSignal>${entry.exitSignal}</ExitSignal>
+            <RouteButton>${entry.routeButton!'N/A'}</RouteButton>
+            <RouteType>${entry.routeType}</RouteType>
+            
+            <!-- Control Tracks -->
+            <ControlTracks>
+                <#list entry.controlTracks as track>
+                <Item>${track}</Item>
+                </#list>
+            </ControlTracks>
+            
+            <!-- Point Positions -->
+            <#if entry.pointNormal?? || entry.pointReverse??>
+            <PointPositions>
+                <#list entry.pointNormal as point>
+                <Point>
+                    <PointId>${point}</PointId>
+                    <Position>NORMAL</Position>
+                </Point>
+                </#list>
+                <#list entry.pointReverse as point>
+                <Point>
+                    <PointId>${point}</PointId>
+                    <Position>REVERSE</Position>
+                </Point>
+                </#list>
+            </PointPositions>
+            </#if>
+            
+            <!-- Overlap Tracks -->
+            <#if entry.overlapTracks??>
+            <OverlapTracks>
+                <#list entry.overlapTracks as track>
+                <Item>${track}</Item>
+                </#list>
+            </OverlapTracks>
+            </#if>
+            
+            <!-- Isolation Points -->
+            <#if entry.isolationPointNormal?? || entry.isolationPointReverse??>
+            <IsolationPoints>
+                <#list entry.isolationPointNormal as point>
+                <Item>${point}</Item>
+                </#list>
+                <#list entry.isolationPointReverse as point>
+                <Item>${point}</Item>
+                </#list>
+            </IsolationPoints>
+            </#if>
+            
+            <!-- Crank Handles -->
+            <#if entry.crankHandles??>
+            <CrankHandles>
+                <#list entry.crankHandles as handle>
+                <Item>${handle}</Item>
+                </#list>
+            </CrankHandles>
+            </#if>
+            
+            <!-- Level Crossings -->
+            <#if entry.levelCrossings??>
+            <LevelCrossings>
+                <#list entry.levelCrossings as lc>
+                <Item>${lc}</Item>
+                </#list>
+            </LevelCrossings>
+            </#if>
+            
+            <!-- Back Locked -->
+            <#if entry.backLocked??>
+            <BackLocked>
+                <#list entry.backLocked as locked>
+                <Item>${locked}</Item>
+                </#list>
+            </BackLocked>
+            </#if>
+            
+            <!-- Conflicting Routes -->
+            <#if entry.conflictingRoutes??>
+            <ConflictingRoutes>
+                <#list entry.conflictingRoutes as conflict>
+                <Item>${conflict}</Item>
+                </#list>
+            </ConflictingRoutes>
+            </#if>
+        </RouteEntry>
+        </#list>
+    </Entries>
+</RouteControlChart>

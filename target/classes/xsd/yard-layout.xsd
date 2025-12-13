@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+           targetNamespace="http://railway.sip/yard-layout" 
+           xmlns:yl="http://railway.sip/yard-layout"
+           elementFormDefault="qualified">
+    
+    <!-- Root element -->
+    <xs:element name="YardLayout" type="yl:YardLayoutType"/>
+    
+    <!-- Yard Layout Type -->
+    <xs:complexType name="YardLayoutType">
+        <xs:sequence>
+            <xs:element name="YardId" type="xs:string"/>
+            <xs:element name="YardName" type="xs:string"/>
+            <xs:element name="CreatedAt" type="xs:dateTime"/>
+            <xs:element name="Nodes">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Node" type="yl:NodeType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Edges">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Edge" type="yl:EdgeType" maxOccurs="unbounded"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Node Type -->
+    <xs:complexType name="NodeType">
+        <xs:sequence>
+            <xs:element name="NodeId" type="xs:string"/>
+            <xs:element name="NodeType" type="yl:NodeTypeEnum"/>
+            <xs:element name="Name" type="xs:string"/>
+            <xs:element name="XLeft" type="xs:double"/>
+            <xs:element name="YLeft" type="xs:double"/>
+            <xs:element name="XRight" type="xs:double"/>
+            <xs:element name="YRight" type="xs:double"/>
+            <xs:element name="Properties" type="yl:PropertiesType" minOccurs="0"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Node Type Enum -->
+    <xs:simpleType name="NodeTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRACK"/>
+            <xs:enumeration value="SIGNAL"/>
+            <xs:enumeration value="POINT"/>
+            <xs:enumeration value="LEVEL_CROSSING"/>
+            <xs:enumeration value="STOP_BOARD"/>
+            <xs:enumeration value="SAND_HUMP"/>
+            <xs:enumeration value="HAND_PLUNGER_LOCK"/>
+            <xs:enumeration value="DERAILMENT_POINT"/>
+            <xs:enumeration value="TRAP_POINT"/>
+            <xs:enumeration value="AXLE_COUNTER"/>
+            <xs:enumeration value="DEAD_END"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Properties Type -->
+    <xs:complexType name="PropertiesType">
+        <xs:sequence>
+            <xs:element name="Property" type="yl:PropertyType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="PropertyType">
+        <xs:sequence>
+            <xs:element name="Key" type="xs:string"/>
+            <xs:element name="Value" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Edge Type -->
+    <xs:complexType name="EdgeType">
+        <xs:sequence>
+            <xs:element name="SourceNodeId" type="xs:string"/>
+            <xs:element name="TargetNodeId" type="xs:string"/>
+            <xs:element name="Direction" type="yl:DirectionEnum"/>
+            <xs:element name="Weight" type="xs:double"/>
+            <xs:element name="EdgeType" type="yl:EdgeTypeEnum"/>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <!-- Direction Enum -->
+    <xs:simpleType name="DirectionEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="UP"/>
+            <xs:enumeration value="DOWN"/>
+            <xs:enumeration value="BOTH"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <!-- Edge Type Enum -->
+    <xs:simpleType name="EdgeTypeEnum">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="TRACK_TO_TRACK"/>
+            <xs:enumeration value="TRACK_TO_POINT"/>
+            <xs:enumeration value="POINT_TO_TRACK"/>
+            <xs:enumeration value="TRACK_TO_SIGNAL"/>
+            <xs:enumeration value="SIGNAL_TO_TRACK"/>
+            <xs:enumeration value="TRACK_TO_LEVEL_CROSSING"/>
+            <xs:enumeration value="LEVEL_CROSSING_TO_TRACK"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
