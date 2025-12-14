@@ -25,4 +25,6 @@ public class ConflictDetectionRequest {
     
     @Builder.Default
     private boolean includeDetails = true;
+    
+    private boolean autoResolve;
 }
