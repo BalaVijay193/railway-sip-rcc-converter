@@ -45,8 +45,8 @@ public class RccGenerationService {
         }
         
         long duration = System.currentTimeMillis() - startTime;
-        log.info("RCC generation completed in {}ms: {} routes, {} entries", 
-                 duration, selectedRoutes.size(), rcc.getTotalRoutes());
+      //  log.info("RCC generation completed in {}ms: {} routes, {} entries", 
+      //           duration, selectedRoutes.size(), rcc.getTotalRoutes());
         
         rccCache.put(rccId, rcc);
         return rcc;

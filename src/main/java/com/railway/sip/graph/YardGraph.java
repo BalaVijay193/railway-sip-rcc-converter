@@ -12,7 +12,7 @@ import com.railway.sip.graph.YardNode;
 /**
  * Graph representation of railway yard layout
  */
-@Data
+//@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,10 +24,50 @@ public class YardGraph {
     private List<YardEdge> edges = new ArrayList<>();
     private Map<Double, List<String>> horizontalIndex = new HashMap<>();
 
-    public void addNode(YardNode node) {
+    public String getYardId() {
+		return yardId;
+	}
+
+	public void setYardId(String yardId) {
+		this.yardId = yardId;
+	}
+
+	public String getYardName() {
+		return yardName;
+	}
+
+	public void setYardName(String yardName) {
+		this.yardName = yardName;
+	}
+
+	public Map<String, List<YardEdge>> getAdjacencyList() {
+		return adjacencyList;
+	}
+
+	public void setAdjacencyList(Map<String, List<YardEdge>> adjacencyList) {
+		this.adjacencyList = adjacencyList;
+	}
+
+	public Map<Double, List<String>> getHorizontalIndex() {
+		return horizontalIndex;
+	}
+
+	public void setHorizontalIndex(Map<Double, List<String>> horizontalIndex) {
+		this.horizontalIndex = horizontalIndex;
+	}
+
+	public void setNodes(Map<String, YardNode> nodes) {
+		this.nodes = nodes;
+	}
+
+	public void setEdges(List<YardEdge> edges) {
+		this.edges = edges;
+	}
+
+	public void addNode(YardNode node) {
         nodes.put(node.getNodeId(), node);
         adjacencyList.putIfAbsent(node.getNodeId(), new ArrayList<>());
-        Double xCoord = node.getXRight();
+        Double xCoord = node.getxRight();
         horizontalIndex.computeIfAbsent(xCoord, k -> new ArrayList<>())
                 .add(node.getNodeId());
     }
@@ -49,7 +89,7 @@ public class YardGraph {
 
     public List<YardNode> findNearbyNodes(double x, double y, double threshold) {
         return nodes.values().stream()
-                .filter(node -> Math.hypot(node.getXRight() - x, node.getYRight() - y) <= threshold)
+                .filter(node -> Math.hypot(node.getxRight() - x, node.getyRight() - y) <= threshold)
                 .collect(Collectors.toList());
     }
 

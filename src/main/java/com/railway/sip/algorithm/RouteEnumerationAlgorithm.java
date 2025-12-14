@@ -21,7 +21,7 @@ public class RouteEnumerationAlgorithm {
                 .filter(s -> s.getDirection() == direction || s.getDirection() == YardNode.Direction.BOTH)
                 .collect(Collectors.toList());
 
-        log.info("Enumerating routes for direction {}: {} entry signals", direction, signalNodes.size());
+    //    log.info("Enumerating routes for direction {}: {} entry signals", direction, signalNodes.size());
 
         for (YardNode entrySignal : signalNodes) {
             Set<Route> routesFromSignal = enumerateRoutesFromSignal(graph, entrySignal, direction);

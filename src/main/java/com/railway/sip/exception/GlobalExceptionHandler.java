@@ -15,7 +15,7 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(NoHandlerFoundException.class)
     public ResponseEntity<Map<String, Object>> handleNotFound(NoHandlerFoundException ex) {
-        log.error("Endpoint not found: {}", ex.getRequestURL());
+     //   log.error("Endpoint not found: {}", ex.getRequestURL());
         
         Map<String, Object> response = new HashMap<>();
         response.put("success", false);
@@ -29,7 +29,7 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(SipRccException.class)
     public ResponseEntity<Map<String, Object>> handleSipRccException(SipRccException ex) {
-        log.error("SIP-RCC Error: {}", ex.getMessage());
+     //   log.error("SIP-RCC Error: {}", ex.getMessage());
         
         Map<String, Object> response = new HashMap<>();
         response.put("success", false);
@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
     
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Map<String, Object>> handleGeneralException(Exception ex) {
-        log.error("Unexpected error", ex);
+      //  log.error("Unexpected error", ex);
         
         Map<String, Object> response = new HashMap<>();
         response.put("success", false);

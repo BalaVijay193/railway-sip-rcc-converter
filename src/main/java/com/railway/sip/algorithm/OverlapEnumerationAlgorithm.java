@@ -60,7 +60,7 @@ public class OverlapEnumerationAlgorithm {
         }
 
         route.setOverlapTrackIds(overlapTracks);
-        log.info("Enumerated {} overlap tracks for route {}", overlapTracks.size(), route.getRouteId());
+ //       log.info("Enumerated {} overlap tracks for route {}", overlapTracks.size(), route.getRouteId());
     }
 
     static class TraversalState {

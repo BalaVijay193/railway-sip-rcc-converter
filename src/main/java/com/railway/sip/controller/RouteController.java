@@ -42,7 +42,7 @@ public class RouteController {
             @RequestBody RouteEnumerationRequest request) 
             throws ExecutionException, InterruptedException {
         
-        log.info("Enumerating routes for yard: {}", request.getYardId());
+        //      log.info("Enumerating routes for yard: {}", request.getYardId());
         
         YardGraph graph = yardGraphService.getYardGraph(request.getYardId());
         if (graph == null) {
@@ -91,7 +91,7 @@ public class RouteController {
     public ResponseEntity<ConflictDetectionResponse> detectConflicts(
             @RequestBody ConflictDetectionRequest request) {
         
-        log.info("Detecting conflicts for {} routes", request.getRouteIds().size());
+        //      log.info("Detecting conflicts for {} routes", request.getRouteIds().size());
         
         YardGraph graph = yardGraphService.getYardGraph(request.getYardId());
         Set<Route> routes = routeEnumerationService.getRoutes(request.getYardId()).stream()

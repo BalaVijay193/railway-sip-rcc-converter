@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 
 /**
  * Cache Configuration for Yard Graphs, Routes, RCC, and Conflicts
@@ -20,7 +21,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @EnableCaching
 @EnableScheduling
 public class CacheConfig {
-    
+	private static final Logger log = Logger.getLogger(CacheConfig.class.getName());
     /**
      * In-memory cache manager for frequently accessed data
      */
@@ -90,7 +91,7 @@ public class CacheConfig {
         
         public void put(String key, Object value) {
             cache.put(key, new CacheEntry<>(value, System.currentTimeMillis() + TTL));
-            log.debug("Cached yard graph: {}", key);
+       //     log.debug("Cached yard graph: {}", key);
         }
         
         public Object get(String key) {
@@ -145,7 +146,7 @@ public class CacheConfig {
         
         public void put(String key, Object value) {
             cache.put(key, new CacheEntry<>(value, System.currentTimeMillis() + TTL));
-            log.debug("Cached routes: {}", key);
+       //     log.debug("Cached routes: {}", key);
         }
         
         public Object get(String key) {
@@ -196,7 +197,7 @@ public class CacheConfig {
         
         public void put(String key, Object value) {
             cache.put(key, new CacheEntry<>(value, System.currentTimeMillis() + TTL));
-            log.debug("Cached RCC: {}", key);
+     //       log.debug("Cached RCC: {}", key);
         }
         
         public Object get(String key) {
@@ -235,6 +236,7 @@ public class CacheConfig {
                 return System.currentTimeMillis() > expiryTime;
             }
         }
+   
     }
     
     /**
@@ -247,7 +249,7 @@ public class CacheConfig {
         
         public void put(String key, Object value) {
             cache.put(key, new CacheEntry<>(value, System.currentTimeMillis() + TTL));
-            log.debug("Cached conflicts: {}", key);
+       //     log.debug("Cached conflicts: {}", key);
         }
         
         public Object get(String key) {
@@ -287,4 +289,5 @@ public class CacheConfig {
             }
         }
     }
+    
 }

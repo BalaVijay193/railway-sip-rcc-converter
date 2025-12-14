@@ -34,4 +34,54 @@ public class RccGenerationRequest {
     
     @Builder.Default
     private boolean includeConflicts = true;
+
+	public String getYardId() {
+		return yardId;
+	}
+
+	public void setYardId(String yardId) {
+		this.yardId = yardId;
+	}
+
+	public Set<String> getSelectedRoutes() {
+		return selectedRoutes;
+	}
+
+	public void setSelectedRoutes(Set<String> selectedRoutes) {
+		this.selectedRoutes = selectedRoutes;
+	}
+
+	public String getExportFormat() {
+		return exportFormat;
+	}
+
+	public void setExportFormat(String exportFormat) {
+		this.exportFormat = exportFormat;
+	}
+
+	public boolean isIncludeOverlaps() {
+		return includeOverlaps;
+	}
+
+	public void setIncludeOverlaps(boolean includeOverlaps) {
+		this.includeOverlaps = includeOverlaps;
+	}
+
+	public boolean isIncludeIsolationPoints() {
+		return includeIsolationPoints;
+	}
+
+	public void setIncludeIsolationPoints(boolean includeIsolationPoints) {
+		this.includeIsolationPoints = includeIsolationPoints;
+	}
+
+	public boolean isIncludeConflicts() {
+		return includeConflicts;
+	}
+
+	public void setIncludeConflicts(boolean includeConflicts) {
+		this.includeConflicts = includeConflicts;
+	}
+    
+    
 }

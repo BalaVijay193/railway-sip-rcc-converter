@@ -70,7 +70,7 @@ public class ConflictResolutionAlgorithm {
                 if (conflict != ConflictType.NONE) {
                     conflictMap.computeIfAbsent(r1, k -> new HashSet<>()).add(r2);
                     conflictMap.computeIfAbsent(r2, k -> new HashSet<>()).add(r1);
-                    log.info("Conflict detected: {} between {} and {}", conflict, r1.getRouteId(), r2.getRouteId());
+        //            log.info("Conflict detected: {} between {} and {}", conflict, r1.getRouteId(), r2.getRouteId());
                 }
             }
         }

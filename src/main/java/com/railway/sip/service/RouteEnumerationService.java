@@ -36,7 +36,7 @@ public class RouteEnumerationService {
         routeCache.put(graph.getYardId(), allRoutes);
         
         long duration = System.currentTimeMillis() - startTime;
-        log.info("Route enumeration completed in {}ms: {} total routes", duration, allRoutes.size());
+    //    log.info("Route enumeration completed in {}ms: {} total routes", duration, allRoutes.size());
         
         return allRoutes;
     }

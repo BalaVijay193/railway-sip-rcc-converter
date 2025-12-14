@@ -19,4 +19,28 @@ public class CreateYardRequest {
     
     private String description;
     private String location;
+	public String getYardId() {
+		return yardId;
+	}
+	public void setYardId(String yardId) {
+		this.yardId = yardId;
+	}
+	public String getYardName() {
+		return yardName;
+	}
+	public void setYardName(String yardName) {
+		this.yardName = yardName;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
 }

@@ -25,4 +25,40 @@ public class AddPointRequest {
     
     private double positionX;
     private double positionY;
+	public String getYardId() {
+		return yardId;
+	}
+	public void setYardId(String yardId) {
+		this.yardId = yardId;
+	}
+	public String getPointId() {
+		return pointId;
+	}
+	public void setPointId(String pointId) {
+		this.pointId = pointId;
+	}
+	public String getPointName() {
+		return pointName;
+	}
+	public void setPointName(String pointName) {
+		this.pointName = pointName;
+	}
+	public String getPointType() {
+		return pointType;
+	}
+	public void setPointType(String pointType) {
+		this.pointType = pointType;
+	}
+	public double getPositionX() {
+		return positionX;
+	}
+	public void setPositionX(double positionX) {
+		this.positionX = positionX;
+	}
+	public double getPositionY() {
+		return positionY;
+	}
+	public void setPositionY(double positionY) {
+		this.positionY = positionY;
+	}
 }

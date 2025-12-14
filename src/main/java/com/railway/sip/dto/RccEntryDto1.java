@@ -11,7 +11,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RccEntryDto {
+public class RccEntryDto1 {
     private String routeId;
     private String routeName;
     private String entrySignalId;

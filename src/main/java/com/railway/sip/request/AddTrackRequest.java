@@ -25,4 +25,44 @@ public class AddTrackRequest {
     private double length;
     
     private String type;
+
+	public String getYardId() {
+		return yardId;
+	}
+
+	public void setYardId(String yardId) {
+		this.yardId = yardId;
+	}
+
+	public String getTrackId() {
+		return trackId;
+	}
+
+	public void setTrackId(String trackId) {
+		this.trackId = trackId;
+	}
+
+	public String getTrackName() {
+		return trackName;
+	}
+
+	public void setTrackName(String trackName) {
+		this.trackName = trackName;
+	}
+
+	public double getLength() {
+		return length;
+	}
+
+	public void setLength(double length) {
+		this.length = length;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
 }

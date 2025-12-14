@@ -37,8 +37,8 @@ public class RccController {
     public ResponseEntity<RccGenerationResponse> generateRcc(
             @RequestBody RccGenerationRequest request) {
         
-        log.info("Generating RCC for yard: {} with {} routes", 
-                 request.getYardId(), request.getSelectedRoutes().size());
+        //      log..info("Generating RCC for yard: {} with {} routes", 
+        //         request.getYardId(), request.getSelectedRoutes().size());
         
         YardGraph graph = yardGraphService.getYardGraph(request.getYardId());
         if (graph == null) {

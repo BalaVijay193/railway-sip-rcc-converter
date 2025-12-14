@@ -27,4 +27,36 @@ public class ConflictDetectionRequest {
     private boolean includeDetails = true;
     
     private boolean autoResolve;
+
+	public String getYardId() {
+		return yardId;
+	}
+
+	public void setYardId(String yardId) {
+		this.yardId = yardId;
+	}
+
+	public Set<String> getRouteIds() {
+		return routeIds;
+	}
+
+	public void setRouteIds(Set<String> routeIds) {
+		this.routeIds = routeIds;
+	}
+
+	public boolean isIncludeDetails() {
+		return includeDetails;
+	}
+
+	public void setIncludeDetails(boolean includeDetails) {
+		this.includeDetails = includeDetails;
+	}
+
+	public boolean isAutoResolve() {
+		return autoResolve;
+	}
+
+	public void setAutoResolve(boolean autoResolve) {
+		this.autoResolve = autoResolve;
+	}
 }

@@ -46,7 +46,7 @@ public class IsolationPointAlgorithm {
         }
 
         route.setIsolationPointIds(isolationPoints);
-        log.info("Detected {} isolation points for route {}", isolationPoints.size(), route.getRouteId());
+    //    log.info("Detected {} isolation points for route {}", isolationPoints.size(), route.getRouteId());
     }
 
     private static Set<String> findHalfTracks(Route route, YardGraph graph) {

@@ -22,4 +22,36 @@ public class ConnectRequest {
     
     @NotBlank(message = "Connection type is required")
     private String connectionType;
+
+	public String getYardId() {
+		return yardId;
+	}
+
+	public void setYardId(String yardId) {
+		this.yardId = yardId;
+	}
+
+	public String getSourceId() {
+		return sourceId;
+	}
+
+	public void setSourceId(String sourceId) {
+		this.sourceId = sourceId;
+	}
+
+	public String getDestinationId() {
+		return destinationId;
+	}
+
+	public void setDestinationId(String destinationId) {
+		this.destinationId = destinationId;
+	}
+
+	public String getConnectionType() {
+		return connectionType;
+	}
+
+	public void setConnectionType(String connectionType) {
+		this.connectionType = connectionType;
+	}
 }
