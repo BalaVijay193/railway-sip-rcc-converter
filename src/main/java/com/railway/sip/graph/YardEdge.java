@@ -17,4 +17,5 @@ public class YardEdge {
     private YardNode.Direction direction;
     private String type;
     private boolean bidirectional;
+    
 }
