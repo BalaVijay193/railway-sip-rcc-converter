@@ -23,4 +23,7 @@ public class ConflictDetectionResponse {
     private long processingTimeMs;
     private String message;
     private long timestamp = System.currentTimeMillis();
+    
+    private long detectedAt;  // ADD THIS
+
 }

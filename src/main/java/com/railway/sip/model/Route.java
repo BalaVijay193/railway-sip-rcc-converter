@@ -27,6 +27,20 @@ public class Route {
     private List<String> levelCrossingIds;
     private RouteType type;
     private String status;
+    
+    // ADD THESE FIELDS
+    private String approachLockedTrack;
+    private List<String> backLockedTracks;
+
+    // ADD THESE METHODS
+    public String getApproachLockedTrack() {
+        return this.approachLockedTrack;
+    }
+
+    public List<String> getBackLockedTracks() {
+        return this.backLockedTracks;
+    }
+
 
     public enum RouteType {
         MAINLINE,

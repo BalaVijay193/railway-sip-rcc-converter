@@ -15,4 +15,12 @@ public class RouteEnumerationRequest {
     private String yardId;
     private YardNode.Direction direction;
     private boolean includeConflicts;
+    
+    private String routeType;  // ADD THIS
+
+    // ADD THIS METHOD
+    public String getRouteType() {
+        return this.routeType;
+    }
+
 }

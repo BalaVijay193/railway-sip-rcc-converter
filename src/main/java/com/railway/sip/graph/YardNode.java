@@ -42,6 +42,11 @@ public class YardNode {
         HOME,
         CALLING_ON,
         SHUNT,
-        STOP
+        STOP,
+        STARTER,
+        ADVANCED_STARTER,
+        DEPENDENT_SHUNT,
+        INDEPENDENT_SHUNT,
+
     }
 }
