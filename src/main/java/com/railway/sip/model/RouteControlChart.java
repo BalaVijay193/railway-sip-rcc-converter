@@ -20,4 +20,19 @@ public class RouteControlChart {
     private List<String> crankHandles;
     private String createdDate;
     private String lastModifiedDate;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public static class RouteEntry {
+    private String routeId;
+    private String routeName;
+    private String entrySignalId;
+    private String exitSignalId;
+    @Builder.Default
+    private List<String> controlTracks = new ArrayList<>();
+    @Builder.Default
+    private List<String> overlapTracks = new ArrayList<>();
+}
 }
