@@ -21,7 +21,6 @@ D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\util\ValidationUtil.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\service\XmlExportService.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\util\CoordinateUtil.java
-D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\dto\RccEntryDto.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\dto\YardDto.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\controller\RccController.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\algorithm\OverlapEnumerationAlgorithm.java
@@ -32,6 +31,7 @@ D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\model\Route.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\service\RccGenerationService.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\SipRccConverterApplication.java
+D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\dto\RccEntryDto1.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\request\ConflictDetectionRequest.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\service\PdfExportService.java
 D:\STSWorkspace\Perplexity_workspace\railway-sip-rcc-converter\src\main\java\com\railway\sip\exception\SipRccException.java

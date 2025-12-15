@@ -205,4 +205,17 @@ public class YardGraph {
         }
         return false;
     }
+
+	public void setLocation(String location) {
+		// TODO Auto-generated method stub
+		
+		
+	}
+
+	public void setYardType(String description) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 }

@@ -66,4 +66,8 @@ public class YardDto {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	public void setYardType(String description2) {
+		// TODO Auto-generated method stub
+		
+	}
 }

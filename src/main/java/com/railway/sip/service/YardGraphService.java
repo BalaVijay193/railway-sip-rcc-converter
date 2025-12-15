@@ -13,254 +13,223 @@ public class YardGraphService {
     
     private final Map<String, YardGraph> yards = new ConcurrentHashMap<>();
     
-    /**
-     * Create a new yard with given specifications
-     */
-    public YardDto createYard(String yardId, String yardName, String location, String type) {
-        YardGraph yard = YardGraph.builder()
-                .yardId(yardId)
-                .yardName(yardName)
-                .location(location)
-                .yardType(type)
-                .nodes(new HashMap<>())
-                .edges(new HashMap<>())
-                .build();
-        
+    public YardDto createYard(String yardId, String yardName, String location, String description) {
+        YardGraph yard = new YardGraph();
+        yard.setYardId(yardId);
+        yard.setYardName(yardName);
+        yard.setLocation(location);
+        yard.setYardType(description);
+        yard.setNodes(new HashMap<>());
+        yard.setEdges(new ArrayList<>());
         yards.put(yardId, yard);
         
-        return YardDto.builder()
-                .yardId(yardId)
-                .yardName(yardName)
-                .location(location)
-                .yardType(type)
-                .nodeCount(0)
-                .edgeCount(0)
-                .build();
+        YardDto dto = new YardDto();
+        dto.setYardId(yardId);
+        dto.setYardName(yardName);
+        dto.setLocation(location);
+    //    dto.setYardType(description);
+      //  dto.setNodeCount(0);
+      //  dto.setEdgeCount(0);
+        return dto;
     }
     
-    /**
-     * Get yard by ID
-     */
     public YardDto getYard(String yardId) {
         YardGraph yard = yards.get(yardId);
         if (yard == null) return null;
         
-        return YardDto.builder()
-                .yardId(yard.getYardId())
-                .yardName(yard.getYardName())
-                .location(yard.getLocation())
-                .yardType(yard.getYardType())
-                .nodeCount(yard.getNodes().size())
-                .edgeCount(yard.getEdges().size())
-                .build();
+        YardDto dto = new YardDto();
+        dto.setYardId(yard.getYardId());
+        dto.setYardName(yard.getYardName());
+   //     dto.setLocation(yard.getLocation());
+        return dto;
     }
     
-    /**
-     * Add a track to the yard
-     */
     public TrackDto addTrack(String yardId, String trackId, String trackName, double length, String trackType) {
         YardGraph yard = yards.get(yardId);
         if (yard == null) return null;
         
-        YardNode node = YardNode.builder()
-                .nodeId(trackId)
-                .nodeName(trackName)
-                .nodeType(YardNode.NodeType.TRACK)
-                .length(length)
-                .build();
+        YardNode node = new YardNode();
+        node.setNodeId(trackId);
+        node.setNodeName(trackName);
+        node.setNodeType("TRACK");
+        node.setLength(length);
         
         yard.getNodes().put(trackId, node);
         
-        return TrackDto.builder()
-                .trackId(trackId)
-                .trackName(trackName)
-                .length(length)
-                .trackType(trackType)
-                .build();
+        TrackDto dto = new TrackDto();
+        dto.setTrackId(trackId);
+        dto.setTrackName(trackName);
+        dto.setLength(length);
+        dto.setTrackType(trackType);
+        return dto;
     }
     
-    /**
-     * Add a signal to the yard
-     */
     public SignalDto addSignal(String yardId, String signalId, String signalName, String signalType, double x, double y) {
         YardGraph yard = yards.get(yardId);
         if (yard == null) return null;
         
-        YardNode.SignalType type = YardNode.SignalType.valueOf(signalType.toUpperCase());
+        YardNode node = new YardNode();
+        node.setNodeId(signalId);
+        node.setNodeName(signalName);
+        node.setNodeType("SIGNAL");
+        node.setX(x);
+        node.setY(y);
         
-        YardNode node = YardNode.builder()
-                .nodeId(signalId)
-                .nodeName(signalName)
-                .nodeType(YardNode.NodeType.SIGNAL)
-                .signalType(type)
-                .x(x)
-                .y(y)
-                .build();
+        try {
+            node.setSignalType(YardNode.SignalType.valueOf(signalType.toUpperCase()));
+        } catch (IllegalArgumentException e) {
+            node.setSignalType(YardNode.SignalType.HOME);
+        }
         
         yard.getNodes().put(signalId, node);
         
-        return SignalDto.builder()
-                .signalId(signalId)
-                .signalName(signalName)
-                .signalType(signalType)
-                .x(x)
-                .y(y)
-                .build();
+        SignalDto dto = new SignalDto();
+        dto.setSignalId(signalId);
+        dto.setSignalName(signalName);
+        dto.setSignalType(signalType);
+        dto.setX(x);
+        dto.setY(y);
+        return dto;
     }
     
-    /**
-     * Add a point to the yard
-     */
     public PointDto addPoint(String yardId, String pointId, String pointName, String pointType, double x, double y) {
         YardGraph yard = yards.get(yardId);
         if (yard == null) return null;
         
-        YardNode node = YardNode.builder()
-                .nodeId(pointId)
-                .nodeName(pointName)
-                .nodeType(YardNode.NodeType.POINT)
-                .pointType(pointType)
-                .x(x)
-                .y(y)
-                .build();
+        YardNode node = new YardNode();
+        node.setNodeId(pointId);
+        node.setNodeName(pointName);
+        node.setNodeType("POINT");
+        node.setPointType(pointType);
+        node.setX(x);
+        node.setY(y);
         
         yard.getNodes().put(pointId, node);
         
-        return PointDto.builder()
-                .pointId(pointId)
-                .pointName(pointName)
-                .pointType(pointType)
-                .x(x)
-                .y(y)
-                .build();
+        PointDto dto = new PointDto();
+        dto.setPointId(pointId);
+        dto.setPointName(pointName);
+        dto.setPointType(pointType);
+        dto.setX(x);
+        dto.setY(y);
+        return dto;
     }
     
-    /**
-     * Add connection between two nodes
-     */
     public ConnectionDto addConnection(String yardId, String fromNodeId, String toNodeId, String connectionType) {
         YardGraph yard = yards.get(yardId);
         if (yard == null) return null;
         
         String edgeId = fromNodeId + "_" + toNodeId;
-        YardEdge edge = YardEdge.builder()
-                .edgeId(edgeId)
-                .fromNode(fromNodeId)
-                .toNode(toNodeId)
-                .edgeType(connectionType)
-                .build();
+        YardEdge edge = new YardEdge();
+        edge.setEdgeId(edgeId);
+        edge.setFromNode(fromNodeId);
+        edge.setToNode(toNodeId);
+        edge.setEdgeType(connectionType);
         
-        yard.getEdges().put(edgeId, edge);
+        yard.getEdges().add(edge);
         
-        return ConnectionDto.builder()
-                .connectionId(edgeId)
-                .fromNodeId(fromNodeId)
-                .toNodeId(toNodeId)
-                .connectionType(connectionType)
-                .build();
+        ConnectionDto dto = new ConnectionDto();
+        dto.setConnectionId(edgeId);
+        dto.setFromNodeId(fromNodeId);
+        dto.setToNodeId(toNodeId);
+        dto.setConnectionType(connectionType);
+        return dto;
     }
     
-    /**
-     * Validate yard configuration
-     */
     public ValidationDto validateYard(String yardId) {
         YardGraph yard = yards.get(yardId);
-        if (yard == null) {
-            return ValidationDto.builder()
-                    .isValid(false)
-                    .errorMessage("Yard not found")
-                    .build();
-        }
         
-        return ValidationDto.builder()
-                .isValid(true)
-                .message("Yard is valid")
-                .build();
+        ValidationDto dto = new ValidationDto();
+        if (yard == null) {
+            dto.setValid(false);
+            dto.setErrorMessage("Yard not found");
+        } else {
+            dto.setValid(true);
+            dto.setMessage("Yard is valid");
+        }
+        return dto;
     }
     
-    /**
-     * List all tracks in the yard
-     */
     public List<TrackDto> listTracks(String yardId) {
         YardGraph yard = yards.get(yardId);
-        if (yard == null) return new ArrayList<>();
-        
         List<TrackDto> tracks = new ArrayList<>();
-        yard.getNodes().values().stream()
-                .filter(n -> n.getNodeType() == YardNode.NodeType.TRACK)
-                .forEach(n -> tracks.add(TrackDto.builder()
-                        .trackId(n.getNodeId())
-                        .trackName(n.getNodeName())
-                        .length(n.getLength())
-                        .build()));
         
+        if (yard == null) return tracks;
+        
+        for (YardNode node : yard.getNodes().values()) {
+            if ("TRACK".equals(node.getNodeType())) {
+                TrackDto dto = new TrackDto();
+                dto.setTrackId(node.getNodeId());
+                dto.setTrackName(node.getNodeName());
+                dto.setLength(node.getLength());
+                tracks.add(dto);
+            }
+        }
         return tracks;
     }
     
-    /**
-     * List all signals in the yard
-     */
     public List<SignalDto> listSignals(String yardId) {
         YardGraph yard = yards.get(yardId);
-        if (yard == null) return new ArrayList<>();
-        
         List<SignalDto> signals = new ArrayList<>();
-        yard.getNodes().values().stream()
-                .filter(n -> n.getNodeType() == YardNode.NodeType.SIGNAL)
-                .forEach(n -> signals.add(SignalDto.builder()
-                        .signalId(n.getNodeId())
-                        .signalName(n.getNodeName())
-                        .signalType(n.getSignalType().name())
-                        .x(n.getX())
-                        .y(n.getY())
-                        .build()));
         
+        if (yard == null) return signals;
+        
+        for (YardNode node : yard.getNodes().values()) {
+            if ("SIGNAL".equals(node.getNodeType()) && node.getSignalType() != null) {
+                SignalDto dto = new SignalDto();
+                dto.setSignalId(node.getNodeId());
+                dto.setSignalName(node.getNodeName());
+                dto.setSignalType(node.getSignalType().name());
+                dto.setX(node.getX());
+                dto.setY(node.getY());
+                signals.add(dto);
+            }
+        }
         return signals;
     }
     
-    /**
-     * List all points in the yard
-     */
     public List<PointDto> listPoints(String yardId) {
         YardGraph yard = yards.get(yardId);
-        if (yard == null) return new ArrayList<>();
-        
         List<PointDto> points = new ArrayList<>();
-        yard.getNodes().values().stream()
-                .filter(n -> n.getNodeType() == YardNode.NodeType.POINT)
-                .forEach(n -> points.add(PointDto.builder()
-                        .pointId(n.getNodeId())
-                        .pointName(n.getNodeName())
-                        .pointType(n.getPointType())
-                        .x(n.getX())
-                        .y(n.getY())
-                        .build()));
         
+        if (yard == null) return points;
+        
+        for (YardNode node : yard.getNodes().values()) {
+            if ("POINT".equals(node.getNodeType())) {
+                PointDto dto = new PointDto();
+                dto.setPointId(node.getNodeId());
+                dto.setPointName(node.getNodeName());
+                dto.setPointType(node.getPointType());
+                dto.setX(node.getX());
+                dto.setY(node.getY());
+                points.add(dto);
+            }
+        }
         return points;
     }
     
-    /**
-     * List all connections in the yard
-     */
     public List<ConnectionDto> listConnections(String yardId) {
         YardGraph yard = yards.get(yardId);
-        if (yard == null) return new ArrayList<>();
-        
         List<ConnectionDto> connections = new ArrayList<>();
-        yard.getEdges().values().forEach(e -> connections.add(ConnectionDto.builder()
-                .connectionId(e.getEdgeId())
-                .fromNodeId(e.getFromNode())
-                .toNodeId(e.getToNode())
-                .connectionType(e.getEdgeType())
-                .build()));
         
+        if (yard == null) return connections;
+        
+        for (YardEdge edge : yard.getEdges()) {
+            ConnectionDto dto = new ConnectionDto();
+            dto.setConnectionId(edge.getEdgeId());
+            dto.setFromNodeId(edge.getFromNode());
+            dto.setToNodeId(edge.getToNode());
+            dto.setConnectionType(edge.getEdgeType());
+            connections.add(dto);
+        }
         return connections;
     }
     
-    /**
-     * Delete a yard
-     */
     public boolean deleteYard(String yardId) {
         return yards.remove(yardId) != null;
+    }
+    
+    public YardGraph getYardGraph(String yardId) {
+        return yards.get(yardId);
     }
 }

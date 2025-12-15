@@ -17,18 +17,41 @@ public class RccDto {
     private int totalRoutes;
     private List<RccEntryDto> entries;
     private long generatedAt;
+	public String getRccId() {
+		return rccId;
+	}
+	public void setRccId(String rccId) {
+		this.rccId = rccId;
+	}
+	public String getYardId() {
+		return yardId;
+	}
+	public void setYardId(String yardId) {
+		this.yardId = yardId;
+	}
+	public String getYardName() {
+		return yardName;
+	}
+	public void setYardName(String yardName) {
+		this.yardName = yardName;
+	}
+	public int getTotalRoutes() {
+		return totalRoutes;
+	}
+	public void setTotalRoutes(int totalRoutes) {
+		this.totalRoutes = totalRoutes;
+	}
+	public List<RccEntryDto> getEntries() {
+		return entries;
+	}
+	public void setEntries(List<RccEntryDto> entries) {
+		this.entries = entries;
+	}
+	public long getGeneratedAt() {
+		return generatedAt;
+	}
+	public void setGeneratedAt(long generatedAt) {
+		this.generatedAt = generatedAt;
+	}
 }
 
-@Data
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-class RccEntryDto {
-    private String routeName;
-    private String entrySignal;
-    private String exitSignal;
-    private Set<String> controlTracks;
-    private Set<String> pointNormal;
-    private Set<String> pointReverse;
-    private Set<String> conflictingRoutes;
-}
